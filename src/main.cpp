@@ -2,37 +2,46 @@
 #include <fstream>
 #include <string>
 using namespace std;
+bool PrimeCheck(int pnumber);
 
 int main()
 {
-    fstream file;
+    ofstream file1;
+    string line;
     bool prime;
     int number = 0;
-    string line;
-    file.open("Numbers.txt");
 
+    file1.open("Numbers.txt");
     while (true){
         number++;
-
-            int dnumber = (number / 2);
-            prime = true;
-            if (number % 2 == 0 && number >= 10){
-                dnumber = 0;
-                prime = false;
-            }
-
-            while (dnumber > 1) {
-                int rest = number % dnumber;
-                if (rest == 0) {
-                    dnumber = 0;
-                    prime = false;
-                }
-                dnumber--;
-            }
-
+        prime = PrimeCheck(number);
         if (prime == true){
         cout << number << " is a prime number." << endl;
-        file << number << " is a prime number." << endl;
+        file1 << number << " is a prime number." << endl;
         }
     }
+file1.close();
+return 0;
+}
+
+bool PrimeCheck(int pnumber){
+
+    int dnumber = (pnumber / 2);
+    bool prime = true;
+
+    if (pnumber % 2 == 0 && pnumber >= 10){
+        dnumber = 0;
+        prime = false;
+    }
+
+    while (dnumber > 1) {
+        int rest = pnumber % dnumber;
+        if (rest == 0) {
+            dnumber = 0;
+            prime = false;
+        }
+
+        dnumber--;
+    }
+return prime;
 }
