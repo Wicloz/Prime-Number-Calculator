@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Prime Number Calculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Prime_Number_Calculator_jar</output-path>
+    <root id="archive" name="Prime Number Calculator.jar">
+      <element id="module-output" name="Prime Number Calculator" />
+    </root>
+  </artifact>
+</component>
