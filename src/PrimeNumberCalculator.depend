@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1404507905 source:d:\projects\prime-number-calculator\src\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
