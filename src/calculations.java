@@ -1,14 +1,16 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class calculations {
-    public void primeFinder(int number) {
+    private boolean prime;
 
-        String file = "Numbers.txt";
-//        BufferedWriter out = new BufferedWriter(new FileWriter(file));
+    public void primeFinder(int number){
 
-        int dnumber = (number / 2) + 1;
-        boolean prime = true;
+        int dnumber = (number / 2);
+        prime = true;
+
+        if (number % 2 == 0 && number >= 10){
+            dnumber = 0;
+            prime = false;
+        }
 
         while (dnumber > 1) {
             int rest = number % dnumber;
@@ -18,11 +20,10 @@ public class calculations {
             }
             dnumber--;
         }
-
-        if (prime){
-            System.out.println(number + " is a prime number.");
-//            out.write(number + " is a prime number");
-        }
-
     }
+
+    public boolean getPrime(){
+        return prime;
+    }
+
 }
