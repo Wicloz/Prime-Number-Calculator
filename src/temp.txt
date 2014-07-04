@@ -1,0 +1,19 @@
+int primeFinder(){
+
+    int dnumber = (number / 2);
+    prime = true;
+
+    if (number % 2 == 0 && number >= 10){
+        dnumber = 0;
+        prime = false;
+    }
+
+    while (dnumber > 1) {
+        int rest = number % dnumber;
+        if (rest == 0) {
+            dnumber = 0;
+            prime = false;
+        }
+        dnumber--;
+    }
+}
