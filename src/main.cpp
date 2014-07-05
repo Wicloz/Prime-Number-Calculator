@@ -26,22 +26,18 @@ return 0;
 
 bool PrimeCheck(int pnumber){
 
-    int dnumber = (pnumber / 2);
+    int maxn = (pnumber / 2);
+    int dnumber = 2;
     bool prime = true;
 
-    if (pnumber % 2 == 0 && pnumber >= 10){
-        dnumber = 0;
-        prime = false;
-    }
-
-    while (dnumber > 1) {
+    while (dnumber <= maxn && dnumber != 0) {
         int rest = pnumber % dnumber;
         if (rest == 0) {
-            dnumber = 0;
+            dnumber = -1;
             prime = false;
         }
 
-        dnumber--;
+        dnumber++;
     }
 return prime;
 }
