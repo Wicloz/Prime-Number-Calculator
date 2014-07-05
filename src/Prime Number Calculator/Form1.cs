@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Prime_Number_Calculator
 {
     public partial class Form1 : Form
     {
         public bool running = false;
+        Thread searchP;
+        string foundNumbers = "";
 
         public Form1()
         {
@@ -23,6 +26,7 @@ namespace Prime_Number_Calculator
 
         private void start_Click(object sender, EventArgs e)
         {
+            searchP = new Thread(pCalculator);
             numberIn.Enabled = false;
             int number = 0;
             bool failConvert = false;
@@ -41,25 +45,25 @@ namespace Prime_Number_Calculator
             if (number > 0)
             {
                 running = true;
-                pCalculator(number);
+                searchP.Start(number);
             }
             else if (failConvert != true)
             {
                 MessageBox.Show("Invalid number!", "Error");
             }
-
-            numberIn.Enabled = true;
         }
 
         private void stop_Click(object sender, EventArgs e)
         {
             running = false;
             numberIn.Enabled = true;
+            pNumberOut.Text = foundNumbers;
         }
 
-        void pCalculator(int number)
+        void pCalculator(object sNumber)
         {
-            while (number < 5000 && running == true)
+            int number = Convert.ToInt32(sNumber);
+            while (running == true)
             {
                 int maxn = (number / 2);
                 bool prime = true;
@@ -76,12 +80,12 @@ namespace Prime_Number_Calculator
 
                 if (prime == true)
                 {
-                    pNumberOut.Text += number.ToString();
+                    foundNumbers += number.ToString();
                     if (addText.Checked)
                     {
-                        pNumberOut.Text += "  is a prime number.";
+                        foundNumbers += "  is a prime number.";
                     }
-                    pNumberOut.Text += Environment.NewLine;
+                    foundNumbers += "\r\n";
                 }
 
             number++;
@@ -92,6 +96,16 @@ namespace Prime_Number_Calculator
         private void saveFile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            searchP.Abort();
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            pNumberOut.Text = foundNumbers;
         }
     }
 }
