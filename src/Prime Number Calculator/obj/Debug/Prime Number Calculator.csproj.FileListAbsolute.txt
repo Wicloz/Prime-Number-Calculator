@@ -1,0 +1,2 @@
+D:\Projects\Prime-Number-Calculator\Prime Number Calculator\Prime Number Calculator\bin\Debug\Prime Number Calculator.exe.config
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\bin\Debug\Prime Number Calculator.exe.config
