@@ -33,7 +33,7 @@
             this.numberIn = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pNumberOut = new System.Windows.Forms.RichTextBox();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.saveFile = new System.Windows.Forms.Button();
             this.addText = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -91,6 +91,7 @@
             this.saveFile.TabIndex = 5;
             this.saveFile.Text = "Save to file";
             this.saveFile.UseVisualStyleBackColor = true;
+            this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
             // 
             // addText
             // 
@@ -128,7 +129,7 @@
         private System.Windows.Forms.TextBox numberIn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox pNumberOut;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Button saveFile;
         private System.Windows.Forms.CheckBox addText;
     }

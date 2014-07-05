@@ -12,12 +12,14 @@ namespace Prime_Number_Calculator
 {
     public partial class Form1 : Form
     {
+        public bool running = false;
+
         public Form1()
         {
             InitializeComponent();
-        }
+            numberIn.Text = "1";
 
-        public bool running;
+        }
 
         private void start_Click(object sender, EventArgs e)
         {
@@ -30,9 +32,9 @@ namespace Prime_Number_Calculator
             {
                 number = Convert.ToInt32(numberIn.Text);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show("Enter a number!", "Error");
                 failConvert = true;
             }
 
@@ -43,7 +45,7 @@ namespace Prime_Number_Calculator
             }
             else if (failConvert != true)
             {
-                MessageBox.Show("Invalid number.", "Error");
+                MessageBox.Show("Invalid number!", "Error");
             }
 
             numberIn.Enabled = true;
@@ -57,7 +59,7 @@ namespace Prime_Number_Calculator
 
         void pCalculator(int number)
         {
-            while (number < 1000 && running == true)
+            while (number < 5000 && running == true)
             {
                 int maxn = (number / 2);
                 bool prime = true;
@@ -79,11 +81,16 @@ namespace Prime_Number_Calculator
                     {
                         pNumberOut.Text += "  is a prime number.";
                     }
-                    pNumberOut.Text += "    ";
+                    pNumberOut.Text += Environment.NewLine;
                 }
 
             number++;
             }
+
+        }
+
+        private void saveFile_Click(object sender, EventArgs e)
+        {
 
         }
     }
