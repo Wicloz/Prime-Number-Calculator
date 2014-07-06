@@ -111,7 +111,7 @@
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(142, 20);
             this.update.TabIndex = 8;
-            this.update.Text = "Update List";
+            this.update.Text = "Update Current Number";
             this.update.UseVisualStyleBackColor = true;
             this.update.Click += new System.EventHandler(this.update_Click);
             // 

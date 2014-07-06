@@ -15,18 +15,22 @@ namespace Prime_Number_Calculator
     {
         public bool running = false;
         Thread searchP;
+        int number = 0;
         string foundNumbers = "";
+        
 
         public Form1()
         {
             InitializeComponent();
             numberIn.Text = "1";
-
+            stop.Enabled = false;
         }
 
         private void start_Click(object sender, EventArgs e)
         {
+            foundNumbers = "";
             searchP = new Thread(pCalculator);
+            start.Enabled = false;
             numberIn.Enabled = false;
             int number = 0;
             bool failConvert = false;
@@ -46,23 +50,20 @@ namespace Prime_Number_Calculator
             {
                 running = true;
                 searchP.Start(number);
+                stop.Enabled = true;
+                pNumberOut.Text = "Current Number: " + number.ToString();
             }
             else if (failConvert != true)
             {
                 MessageBox.Show("Invalid number!", "Error");
+                start.Enabled = true;
+                numberIn.Enabled = true;
             }
-        }
-
-        private void stop_Click(object sender, EventArgs e)
-        {
-            running = false;
-            numberIn.Enabled = true;
-            pNumberOut.Text = foundNumbers;
         }
 
         void pCalculator(object sNumber)
         {
-            int number = Convert.ToInt32(sNumber);
+            number = Convert.ToInt32(sNumber);
             while (running == true)
             {
                 int maxn = (number / 2);
@@ -93,6 +94,15 @@ namespace Prime_Number_Calculator
 
         }
 
+        private void stop_Click(object sender, EventArgs e)
+        {
+            running = false;
+            stop.Enabled = false;
+            start.Enabled = true;
+            numberIn.Enabled = true;
+            pNumberOut.Text = foundNumbers;
+        }
+
         private void saveFile_Click(object sender, EventArgs e)
         {
 
@@ -105,7 +115,7 @@ namespace Prime_Number_Calculator
 
         private void update_Click(object sender, EventArgs e)
         {
-            pNumberOut.Text = foundNumbers;
+            pNumberOut.Text = "Current Number: " + number.ToString();
         }
     }
 }
