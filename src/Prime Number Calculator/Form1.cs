@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace Prime_Number_Calculator
 {
@@ -16,6 +17,7 @@ namespace Prime_Number_Calculator
         public bool running = false;
         Thread searchP;
         int number = 0;
+        int mNumber = 0;
         string foundNumbers = "";
         
 
@@ -23,7 +25,9 @@ namespace Prime_Number_Calculator
         {
             InitializeComponent();
             numberIn.Text = "1";
+            mNumberIn.Text = "0";
             stop.Enabled = false;
+            saveFile.Enabled = false;
         }
 
         private void start_Click(object sender, EventArgs e)
@@ -32,6 +36,8 @@ namespace Prime_Number_Calculator
             searchP = new Thread(pCalculator);
             start.Enabled = false;
             numberIn.Enabled = false;
+            mNumberIn.Enabled = false;
+            saveFile.Enabled = false;
             int number = 0;
             bool failConvert = false;
             pNumberOut.Text = "";
@@ -44,6 +50,18 @@ namespace Prime_Number_Calculator
             {
                 MessageBox.Show("Enter a number!", "Error");
                 failConvert = true;
+                startFail();
+            }
+
+            try
+            {
+                mNumber = Convert.ToInt32(mNumberIn.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Enter a number!", "Error");
+                failConvert = true;
+                startFail();
             }
 
             if (number > 0)
@@ -56,22 +74,21 @@ namespace Prime_Number_Calculator
             else if (failConvert != true)
             {
                 MessageBox.Show("Invalid number!", "Error");
-                start.Enabled = true;
-                numberIn.Enabled = true;
+                startFail();
             }
         }
 
         void pCalculator(object sNumber)
         {
             number = Convert.ToInt32(sNumber);
-            while (running == true)
+            while (running == true && (number < mNumber || mNumber == 0))
             {
-                int maxn = (number / 2);
+                int mdNumber = (number / 2);
                 bool prime = true;
 
-                for (int dnumber = 2; dnumber <= maxn; dnumber++)
+                for (int dNumber = 2; dNumber <= mdNumber; dNumber++)
                 {
-                    int rest = number % dnumber;
+                    int rest = number % dNumber;
                     if (rest == 0)
                     {
                         prime = false;
@@ -84,28 +101,43 @@ namespace Prime_Number_Calculator
                     foundNumbers += number.ToString();
                     if (addText.Checked)
                     {
-                        foundNumbers += "  is a prime number.";
+                        foundNumbers += " is a prime number.";
                     }
                     foundNumbers += "\r\n";
                 }
 
             number++;
             }
-
+            searchP.Abort();
         }
 
         private void stop_Click(object sender, EventArgs e)
         {
-            running = false;
-            stop.Enabled = false;
-            start.Enabled = true;
-            numberIn.Enabled = true;
-            pNumberOut.Text = foundNumbers;
+            stopSearch();
         }
 
         private void saveFile_Click(object sender, EventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text File|*.txt";
+            sfd.Filter = "All Files|*.*";
+            
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string path = sfd.FileName;
+                BinaryWriter pw = new BinaryWriter(File.Create(path));
+                pw.Write(foundNumbers);
+                pw.Dispose();
+            }
+        }
 
+        private void update_Click(object sender, EventArgs e)
+        {
+            pNumberOut.Text = "Current Number: " + number.ToString();
+            if (number == mNumber)
+            {
+                stopSearch();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -113,9 +145,27 @@ namespace Prime_Number_Calculator
             searchP.Abort();
         }
 
-        private void update_Click(object sender, EventArgs e)
+        public void stopSearch()
         {
-            pNumberOut.Text = "Current Number: " + number.ToString();
+            running = false;
+            stop.Enabled = false;
+            start.Enabled = true;
+            numberIn.Enabled = true;
+            mNumberIn.Enabled = true;
+            saveFile.Enabled = true;
+            searchP.Abort();
+            pNumberOut.Text = foundNumbers;
+        }
+
+        public void startFail()
+        {
+            start.Enabled = true;
+            numberIn.Enabled = true;
+            mNumberIn.Enabled = true;
+            if (foundNumbers != "")
+            {
+                saveFile.Enabled = true;
+            }
         }
     }
 }
