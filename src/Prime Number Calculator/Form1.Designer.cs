@@ -38,6 +38,7 @@
             this.update = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.mNumberIn = new System.Windows.Forms.TextBox();
+            this.autoSave = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // start
@@ -79,9 +80,9 @@
             // 
             // saveFile
             // 
-            this.saveFile.Location = new System.Drawing.Point(9, 234);
+            this.saveFile.Location = new System.Drawing.Point(12, 234);
             this.saveFile.Name = "saveFile";
-            this.saveFile.Size = new System.Drawing.Size(142, 30);
+            this.saveFile.Size = new System.Drawing.Size(142, 35);
             this.saveFile.TabIndex = 5;
             this.saveFile.Text = "Save to file";
             this.saveFile.UseVisualStyleBackColor = true;
@@ -96,6 +97,7 @@
             this.addText.TabIndex = 6;
             this.addText.Text = "Add Text";
             this.addText.UseVisualStyleBackColor = true;
+            this.addText.CheckedChanged += new System.EventHandler(this.addText_CheckedChanged);
             // 
             // pNumberOut
             // 
@@ -103,14 +105,14 @@
             this.pNumberOut.Multiline = true;
             this.pNumberOut.Name = "pNumberOut";
             this.pNumberOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.pNumberOut.Size = new System.Drawing.Size(351, 251);
+            this.pNumberOut.Size = new System.Drawing.Size(351, 317);
             this.pNumberOut.TabIndex = 7;
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(390, 234);
+            this.update.Location = new System.Drawing.Point(12, 298);
             this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(142, 30);
+            this.update.Size = new System.Drawing.Size(142, 32);
             this.update.TabIndex = 8;
             this.update.Text = "Update Current Number";
             this.update.UseVisualStyleBackColor = true;
@@ -133,11 +135,23 @@
             this.mNumberIn.Size = new System.Drawing.Size(139, 20);
             this.mNumberIn.TabIndex = 10;
             // 
+            // autoSave
+            // 
+            this.autoSave.AutoSize = true;
+            this.autoSave.BackColor = System.Drawing.SystemColors.Control;
+            this.autoSave.Location = new System.Drawing.Point(12, 275);
+            this.autoSave.Name = "autoSave";
+            this.autoSave.Size = new System.Drawing.Size(85, 17);
+            this.autoSave.TabIndex = 11;
+            this.autoSave.Text = "Auto Save ?";
+            this.autoSave.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 276);
+            this.ClientSize = new System.Drawing.Size(544, 342);
+            this.Controls.Add(this.autoSave);
             this.Controls.Add(this.mNumberIn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.update);
@@ -168,6 +182,7 @@
         private System.Windows.Forms.Button update;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox mNumberIn;
+        private System.Windows.Forms.CheckBox autoSave;
     }
 }
 

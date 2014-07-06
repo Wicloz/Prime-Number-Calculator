@@ -19,7 +19,6 @@ namespace Prime_Number_Calculator
         int number = 0;
         int mNumber = 0;
         string foundNumbers = "";
-        
 
         public Form1()
         {
@@ -28,16 +27,18 @@ namespace Prime_Number_Calculator
             mNumberIn.Text = "0";
             stop.Enabled = false;
             saveFile.Enabled = false;
+            update.Enabled = false;
+            searchP = new Thread(pCalculator);
         }
 
         private void start_Click(object sender, EventArgs e)
         {
             foundNumbers = "";
-            searchP = new Thread(pCalculator);
             start.Enabled = false;
             numberIn.Enabled = false;
             mNumberIn.Enabled = false;
             saveFile.Enabled = false;
+            addText.Enabled = false;
             int number = 0;
             bool failConvert = false;
             pNumberOut.Text = "";
@@ -69,6 +70,7 @@ namespace Prime_Number_Calculator
                 running = true;
                 searchP.Start(number);
                 stop.Enabled = true;
+                update.Enabled = true;
                 pNumberOut.Text = "Current Number: " + number.ToString();
             }
             else if (failConvert != true)
@@ -111,6 +113,11 @@ namespace Prime_Number_Calculator
             searchP.Abort();
         }
 
+        private void addText_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void stop_Click(object sender, EventArgs e)
         {
             stopSearch();
@@ -149,12 +156,20 @@ namespace Prime_Number_Calculator
         {
             running = false;
             stop.Enabled = false;
+            update.Enabled = false;
             start.Enabled = true;
             numberIn.Enabled = true;
             mNumberIn.Enabled = true;
             saveFile.Enabled = true;
+            addText.Enabled = true;
             searchP.Abort();
             pNumberOut.Text = foundNumbers;
+            if (autoSave.Checked)
+            {
+                BinaryWriter pw = new BinaryWriter(File.Create("Prime Numbers.txt"));
+                pw.Write(foundNumbers);
+                pw.Dispose();
+            }
         }
 
         public void startFail()
@@ -162,6 +177,7 @@ namespace Prime_Number_Calculator
             start.Enabled = true;
             numberIn.Enabled = true;
             mNumberIn.Enabled = true;
+            addText.Enabled = true;
             if (foundNumbers != "")
             {
                 saveFile.Enabled = true;
