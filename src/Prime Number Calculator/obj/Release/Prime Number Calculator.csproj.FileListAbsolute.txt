@@ -1,0 +1,8 @@
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\bin\Release\Prime Number Calculator.exe.config
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\bin\Release\Prime Number Calculator.exe
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\bin\Release\Prime Number Calculator.pdb
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\obj\Release\Prime_Number_Calculator.Form1.resources
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\obj\Release\Prime_Number_Calculator.Properties.Resources.resources
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\obj\Release\Prime Number Calculator.csproj.GenerateResource.Cache
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\obj\Release\Prime Number Calculator.exe
+D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\obj\Release\Prime Number Calculator.pdb

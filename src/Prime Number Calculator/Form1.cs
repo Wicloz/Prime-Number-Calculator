@@ -126,8 +126,8 @@ namespace Prime_Number_Calculator
         private void saveFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Text File|*.txt";
-            sfd.Filter = "All Files|*.*";
+            sfd.Title = "Save List of Prime Numbers";
+            sfd.Filter = "Text File|*.txt|All Files|*.*";
             
             if (sfd.ShowDialog() == DialogResult.OK)
             {
