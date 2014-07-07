@@ -69,10 +69,18 @@ namespace Prime_Number_Calculator
             {
                 running = true;
                 searchP = new Thread(pCalculator);
-                searchP.Start(number);
                 stop.Enabled = true;
                 update.Enabled = true;
                 pNumberOut.Text = "Current Number: " + number.ToString();
+                if (mNumber == 0)
+                {
+                    searchP.Start(number);
+                }
+                else
+                {
+                    pCalculator(number);
+                    stopSearch();
+                }
             }
             else if (failConvert != true)
             {
