@@ -1,1 +1,0 @@
-D:\Projects\Prime-Number-Calculator\src\Prime Number Calculator\bin\x86\Release\Prime Number Calculator.exe.config
