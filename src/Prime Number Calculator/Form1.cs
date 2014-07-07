@@ -68,6 +68,7 @@ namespace Prime_Number_Calculator
             if (number > 0)
             {
                 running = true;
+                searchP = new Thread(pCalculator);
                 searchP.Start(number);
                 stop.Enabled = true;
                 update.Enabled = true;
@@ -80,7 +81,7 @@ namespace Prime_Number_Calculator
             }
         }
 
-        void pCalculator(object sNumber)
+        public void pCalculator(object sNumber)
         {
             number = Convert.ToInt32(sNumber);
             while (running == true && (number < mNumber || mNumber == 0))
