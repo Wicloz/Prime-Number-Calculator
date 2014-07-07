@@ -117,7 +117,7 @@ namespace Prime_Number_Calculator
                     foundNumbers += "\r\n";
                 }
 
-            number++;
+                number++;
             }
             searchP.Abort();
         }
