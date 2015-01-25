@@ -35,7 +35,6 @@
             this.saveFile = new System.Windows.Forms.Button();
             this.addText = new System.Windows.Forms.CheckBox();
             this.pNumberOut = new System.Windows.Forms.TextBox();
-            this.update = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.mNumberIn = new System.Windows.Forms.TextBox();
             this.autoSave = new System.Windows.Forms.CheckBox();
@@ -105,18 +104,8 @@
             this.pNumberOut.Multiline = true;
             this.pNumberOut.Name = "pNumberOut";
             this.pNumberOut.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.pNumberOut.Size = new System.Drawing.Size(351, 317);
+            this.pNumberOut.Size = new System.Drawing.Size(351, 279);
             this.pNumberOut.TabIndex = 7;
-            // 
-            // update
-            // 
-            this.update.Location = new System.Drawing.Point(12, 298);
-            this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(142, 32);
-            this.update.TabIndex = 8;
-            this.update.Text = "Update Current Number";
-            this.update.UseVisualStyleBackColor = true;
-            this.update.Click += new System.EventHandler(this.update_Click);
             // 
             // label2
             // 
@@ -150,11 +139,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 342);
+            this.ClientSize = new System.Drawing.Size(544, 302);
             this.Controls.Add(this.autoSave);
             this.Controls.Add(this.mNumberIn);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.update);
             this.Controls.Add(this.pNumberOut);
             this.Controls.Add(this.addText);
             this.Controls.Add(this.saveFile);
@@ -179,7 +167,6 @@
         private System.Windows.Forms.Button saveFile;
         private System.Windows.Forms.CheckBox addText;
         private System.Windows.Forms.TextBox pNumberOut;
-        private System.Windows.Forms.Button update;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox mNumberIn;
         private System.Windows.Forms.CheckBox autoSave;

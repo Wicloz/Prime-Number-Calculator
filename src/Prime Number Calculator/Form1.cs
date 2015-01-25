@@ -27,7 +27,6 @@ namespace Prime_Number_Calculator
             mNumberIn.Text = "0";
             stop.Enabled = false;
             saveFile.Enabled = false;
-            update.Enabled = false;
             searchP = new Thread(pCalculator);
         }
 
@@ -70,7 +69,6 @@ namespace Prime_Number_Calculator
                 running = true;
                 searchP = new Thread(pCalculator);
                 stop.Enabled = true;
-                update.Enabled = true;
                 pNumberOut.Text = "Current Number: " + number.ToString();
                 if (mNumber == 0)
                 {
@@ -92,22 +90,10 @@ namespace Prime_Number_Calculator
         public void pCalculator(object sNumber)
         {
             number = Convert.ToInt32(sNumber);
+
             while (running == true && (number < mNumber || mNumber == 0))
             {
-                int mdNumber = (number / 2);
-                bool prime = true;
-
-                for (int dNumber = 2; dNumber <= mdNumber; dNumber++)
-                {
-                    int rest = number % dNumber;
-                    if (rest == 0)
-                    {
-                        prime = false;
-                        break;
-                    }
-                }
-
-                if (prime == true)
+                if (isPrime(number))
                 {
                     foundNumbers += number.ToString();
                     if (addText.Checked)
@@ -120,6 +106,29 @@ namespace Prime_Number_Calculator
                 number++;
             }
             searchP.Abort();
+        }
+
+        public bool isPrime(int n)
+        {
+            if (n <= 3)
+            {
+                return n > 1;
+            }
+            else if (n % 2 == 0 || n % 3 == 0)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 5; i * i <= n; i += 6)
+                {
+                    if (n % i == 0 || n % (i + 2) == 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
 
         private void addText_CheckedChanged(object sender, EventArgs e)
@@ -165,7 +174,6 @@ namespace Prime_Number_Calculator
         {
             running = false;
             stop.Enabled = false;
-            update.Enabled = false;
             start.Enabled = true;
             numberIn.Enabled = true;
             mNumberIn.Enabled = true;
